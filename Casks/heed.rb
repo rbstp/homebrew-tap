@@ -1,6 +1,6 @@
 cask "heed" do
-  # Both lines are rewritten by .github/workflows/release.yml when a v* tag is pushed. Editing them
-  # by hand only invites the two disagreeing.
+  # Both lines are rewritten by heed's release workflow (.github/workflows/release.yml in
+  # rbstp/heed) on every release. Editing them by hand only invites the two disagreeing.
   version "0.2.2"
   sha256 "5ab3aa0a1fc45818fa339361841cb2bc840272982ae7e489992e97fc3a2a8b09"
 
@@ -10,6 +10,9 @@ cask "heed" do
   desc "Focus-follows-mouse background agent"
   homepage "https://github.com/rbstp/heed"
 
+  # Releases are built arm64-only; there is no Intel slice. Without this line an Intel Mac would
+  # install cleanly and launchd would then respawn, forever, a binary it can never exec.
+  depends_on arch: :arm64
   depends_on macos: :sonoma
 
   app "Heed.app"
@@ -61,7 +64,10 @@ cask "heed" do
   # new one, so there is no window with two copies loaded.
   uninstall launchctl: "io.github.rbstp.heed"
 
-  zap trash: "~/Library/Logs/heed.log"
+  zap trash: [
+    "~/Library/Logs/heed.log",
+    "~/Library/Preferences/io.github.rbstp.heed.plist",
+  ]
 
   caveats <<~EOS
     Grant Accessibility to Heed under System Settings > Privacy & Security >
