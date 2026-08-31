@@ -1,8 +1,8 @@
 cask "heed" do
   # Both lines are rewritten by .github/workflows/release.yml when a v* tag is pushed. Editing them
   # by hand only invites the two disagreeing.
-  version "0.0.0"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  version "0.2.2"
+  sha256 "5ab3aa0a1fc45818fa339361841cb2bc840272982ae7e489992e97fc3a2a8b09"
 
   url "https://github.com/rbstp/heed/releases/download/v#{version}/Heed-#{version}.zip",
       verified: "github.com/rbstp/heed/"
