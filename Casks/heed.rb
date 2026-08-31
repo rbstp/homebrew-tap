@@ -37,6 +37,21 @@ cask "heed" do
     FileUtils.mkdir_p File.dirname(agent)
     File.write agent, plist
 
+    # Clear the Accessibility grant, which is already dead at this point: ad-hoc signing makes every
+    # release a new identity to TCC, so the record written for the previous version no longer
+    # matches this binary. Leaving it in place is worse than having none, because macOS suppresses
+    # the permission prompt while any record for the bundle ID exists -- the agent then waits
+    # forever while the checkbox in System Settings still looks ticked.
+    #
+    # This has to run before the bootstrap below. The agent prompts once, at startup, and polls
+    # silently after that; reset it afterwards and nothing asks until the next login.
+    #
+    # Tolerate failure: on a first install there is no record to clear, and a machine that has never
+    # granted the permission should not have `brew install` fail over it.
+    system_command "/usr/bin/tccutil",
+                   args:         ["reset", "Accessibility", label],
+                   must_succeed: false
+
     domain = "gui/#{Process.uid}"
     system_command "/bin/launchctl", args: ["bootout", "#{domain}/#{label}"], must_succeed: false
     system_command "/bin/launchctl", args: ["bootstrap", domain, agent]
@@ -52,12 +67,14 @@ cask "heed" do
     Grant Accessibility to Heed under System Settings > Privacy & Security >
     Accessibility. The agent notices within a couple of seconds; nothing to restart.
 
-    Released builds are ad-hoc signed, so each version is a new identity as far as TCC
-    is concerned and the grant does not survive an upgrade -- while the checkbox still
-    looks ticked. After `brew upgrade`, if Heed goes quiet:
+    Expect to grant it again after every upgrade. Released builds are ad-hoc signed, so
+    each version is a new identity as far as TCC is concerned and the old grant cannot
+    carry over. Installing clears the stale entry, which is what lets Heed ask you for
+    the permission again instead of going quiet behind a checkbox that still looks
+    ticked.
+
+    Uninstalling leaves the entry listed. To clear it:
 
       tccutil reset Accessibility io.github.rbstp.heed
-
-    Uninstalling leaves that entry listed; the same line clears it.
   EOS
 end
