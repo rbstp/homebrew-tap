@@ -1,0 +1,28 @@
+name: style
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+    paths:
+      - Casks/**
+
+concurrency:
+  group: style-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  style:
+    runs-on: macos-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      # Offline on purpose: --online would 404 on a release the bump has not published yet.
+      - name: brew style
+        run: brew style Casks/*.rb
