@@ -1,8 +1,8 @@
 cask "heed" do
   # Both lines are rewritten by heed's release workflow (.github/workflows/release.yml in
   # rbstp/heed) on every release. Editing them by hand only invites the two disagreeing.
-  version "0.6.0"
-  sha256 "1938e640c441b05cc4b07bebc2ed83309f0642e407668efe0414776854ffd4c0"
+  version "0.6.1"
+  sha256 "c610b34abfc465c89b31f7da3b06af4f834f88136882b2b20e61eb6e17265107"
 
   url "https://github.com/rbstp/heed/releases/download/v#{version}/Heed-#{version}.zip",
       verified: "github.com/rbstp/heed/"
