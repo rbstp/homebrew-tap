@@ -4,8 +4,7 @@ cask "heed" do
   version "0.13.0"
   sha256 "7804e7a77c1134799e217a8eafb553a2403997896457d48ce80ee209742f0245"
 
-  url "https://github.com/rbstp/heed/releases/download/v#{version}/Heed-#{version}.zip",
-      verified: "github.com/rbstp/heed/"
+  url "https://github.com/rbstp/heed/releases/download/v#{version}/Heed-#{version}.zip"
   name "Heed"
   desc "Focus-follows-mouse background agent"
   homepage "https://github.com/rbstp/heed"
