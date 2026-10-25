@@ -1,9 +1,9 @@
 class Collied < Formula
   desc "Control local coding agents from an iPhone"
   homepage "https://collie.rbstp.dev"
-  url "https://github.com/rbstp/collie/releases/download/v0.1.9/collied-0.1.9-macos-arm64.tar.gz"
-  version "0.1.9"
-  sha256 "e3c40769ceb29e35e6d03646e82ed9846c7cef4c4a3763feb540b9c7ef74466a"
+  url "https://github.com/rbstp/collie/releases/download/v0.1.10/collied-0.1.10-macos-arm64.tar.gz"
+  version "0.1.10"
+  sha256 "577c7ea8eff43c6ca356720ea8c6e6c31c8170d8221f15c57cf9671ec3572d93"
   license "Apache-2.0"
 
   depends_on arch: :arm64
@@ -17,7 +17,7 @@ class Collied < Formula
       exec /bin/bash "#{share}/collied/install.sh" "$@"
     SH
     chmod 0755, bin/"collied-install"
-    doc.install "release.json", "README.md"
+    doc.install "release.json", "README.md", "THIRD_PARTY_NOTICES"
   end
 
   def caveats
