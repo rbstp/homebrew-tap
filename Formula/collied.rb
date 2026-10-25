@@ -1,9 +1,9 @@
 class Collied < Formula
   desc "Control local coding agents from an iPhone"
   homepage "https://collie.rbstp.dev"
-  url "https://github.com/rbstp/collie/releases/download/v0.1.8/collied-0.1.8-macos-arm64.tar.gz"
-  version "0.1.8"
-  sha256 "e061e909f546c3fd7e962effa3a34560789b493030ad217269f41f0e03c245ea"
+  url "https://github.com/rbstp/collie/releases/download/v0.1.9/collied-0.1.9-macos-arm64.tar.gz"
+  version "0.1.9"
+  sha256 "e3c40769ceb29e35e6d03646e82ed9846c7cef4c4a3763feb540b9c7ef74466a"
   license "Apache-2.0"
 
   depends_on arch: :arm64
