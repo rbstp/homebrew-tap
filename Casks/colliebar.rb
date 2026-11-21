@@ -1,8 +1,8 @@
 cask "colliebar" do
-  version "0.2.4"
-  sha256 "70214c8e1cf2add19ce03f3ba6943cd2e27dfc9fa9bd9683635589657ecd324a"
+  version "0.2.6"
+  sha256 "7fd416874978e5a42aba64260ab568e1adf4fa040ca8926d5399346022bc8baf"
 
-  url "https://github.com/rbstp/collie/releases/download/v0.2.4/CollieBar-0.2.4-macos-arm64.zip"
+  url "https://github.com/rbstp/collie/releases/download/v0.2.6/CollieBar-0.2.6-macos-arm64.zip"
   name "CollieBar"
   desc "Menu bar companion for collied"
   homepage "https://collie.rbstp.dev/"
